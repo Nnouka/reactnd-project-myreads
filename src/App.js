@@ -1,7 +1,9 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css';
-import ShelvingUnit from "./ShelvingUnit";
+import ShelvingUnit from './ShelvingUnit';
+import SearchUnit from './SearchUnit';
+import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
@@ -49,7 +51,12 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <ShelvingUnit onShelfChanged={this.handleShelfChanged} shelves={this.state.shelves} />
+        <Route exact path='/' render={() => (
+          <ShelvingUnit onShelfChanged={this.handleShelfChanged} shelves={this.state.shelves} />
+        )} />
+        <Route exact path='/search' render={() => (
+          <SearchUnit onShelfChanged={this.handleShelfChanged} />
+        )} />
       </div>
     )
   }
