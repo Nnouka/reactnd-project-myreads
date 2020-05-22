@@ -197,3 +197,10 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
+.alert-danger {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}

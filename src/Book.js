@@ -8,14 +8,21 @@ class Book extends Component {
     }
     render() {
         const {book, smallThumbnail} = this.props;
+        /**
+         * @description when used in the search unit, return small thumbnails, however if small thumnails
+         * @description don't exist, use normal thumbnails - this is the default behavior
+         */
         const getThumbnail = () => {
-            return book.imageLinks ? (smallThumbnail ? book.imageLinks.smallThumbnail : book.imageLinks.thumbnail) : '';
+            return book.imageLinks ? 
+            (smallThumbnail ? book.imageLinks.smallThumbnail || book.imageLinks.thumbnail
+                : book.imageLinks.thumbnail || book.imageLinks.smallThumbnail) : '';
         }
         const getAppropriateStyle = () => {
             const imgeUrl = getThumbnail();
             return {width: 128, height: 193, backgroundImage: `url(${imgeUrl})`}
         }
         const style = getAppropriateStyle();
+        
         return (
             <div className="book">
                 <div className="book-top">

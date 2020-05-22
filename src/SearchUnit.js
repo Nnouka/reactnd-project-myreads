@@ -11,21 +11,23 @@ class SearchUnit extends Component {
         error: ''
     }
     handleQuery = (query) => {
-        BooksAPI.search(query).then((res) => {
-            if(res && res.error) this.setState(() => ({error: res.error}));
-            else if(res && res.length > 0) {
-               this.setState(() => ({error: '', 
-                                        books: res.map((book) => {
-                                            const {shelfIndexes} = this.props;
-                                            for(const element in shelfIndexes){
-                                                if(shelfIndexes[element].findIndex((s) => s === book.id) > -1) {
-                                                    book['shelf'] = element;
-                                                    console.log(book);
+        query.trim() === '' ? this.setState(() => ({error: '', books: []})) :
+        BooksAPI.search(query.trim()).then((res) => {
+            if(res) {
+                if(res.error) this.setState(() => ({error: `Server responded with: ${res.error}`, books: []}));
+                else if(res.length > 0) {
+                this.setState(() => ({error: '', 
+                                            books: res.map((book) => {
+                                                const {shelfIndexes} = this.props;
+                                                for(const element in shelfIndexes){
+                                                    if(shelfIndexes[element].findIndex((s) => s === book.id) > -1) {
+                                                        book['shelf'] = element;
+                                                    }
                                                 }
-                                            }
-                                            return book;
-                                        })
-                                    }))
+                                                return book;
+                                            })
+                                        }))
+                }
             }
         });
     }

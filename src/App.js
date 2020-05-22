@@ -55,8 +55,6 @@ class BooksApp extends React.Component {
       }
       // persist change to api
       BooksAPI.update(book, toShelf).then((updates) => {
-        console.log(updates);
-        console.log(shelves);
        const rearranged = shelves.map((shelf) => (
         {name: shelf.name, books: books.filter((b) => updates[shelf.name].findIndex((id) => id === b.id) > -1)}
        ));
