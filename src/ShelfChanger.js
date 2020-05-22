@@ -4,7 +4,10 @@ class ShelfChanger extends Component {
     handleShelfChange = (e) => {
         e.preventDefault();
         // console.log("selected", e.target.value)
-        this.props.onShelfChanged(e.target.value);
+        const val = e.target.value;
+        if(val !== 'none') {
+            this.props.onShelfChanged(e.target.value);
+        }
     }
     render() {
         const shelfNames = [
@@ -16,7 +19,7 @@ class ShelfChanger extends Component {
         return (
             <div className="book-shelf-changer">
                 <form>
-                    <select defaultValue={currentShelf} onChange={this.handleShelfChange}>
+                    <select defaultValue={currentShelf || 'none'} onChange={this.handleShelfChange}>
                         <option value="move" disabled>Move to...</option>
                         {
                             shelfNames.map((shelfName) => (
@@ -25,6 +28,7 @@ class ShelfChanger extends Component {
                                 </option>
                             ))
                         }
+                        <option value="none">None</option>
                     </select>
                 </form>
             </div>
