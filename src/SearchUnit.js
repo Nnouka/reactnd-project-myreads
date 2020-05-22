@@ -14,7 +14,9 @@ class SearchUnit extends Component {
         query.trim() === '' ? this.setState(() => ({error: '', books: []})) :
         BooksAPI.search(query.trim()).then((res) => {
             if(res) {
-                if(res.error) this.setState(() => ({error: `Server responded with: ${res.error}`, books: []}));
+                if(res.error) this.setState(() => ({error: 
+                    `Oops sorry, your search input "${query}" can't be handle at the monment - our server responded with: ${res.error}`,
+                books: []}));
                 else if(res.length > 0) {
                 this.setState(() => ({error: '', 
                                             books: res.map((book) => {

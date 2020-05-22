@@ -22,11 +22,11 @@ class Book extends Component {
             return {width: 128, height: 193, backgroundImage: `url(${imgeUrl})`}
         }
         const style = getAppropriateStyle();
-        
+
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={style}></div>
+                    <div className="book-cover" style={style} alt='book cover'></div>
                     <ShelfChanger onShelfChanged={this.handleShelfChanged} currentShelf={book.shelf}/>
                 </div>
                 <div className="book-title">{book.title}</div>
