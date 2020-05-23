@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SearchBar from "./SearchBar";
-import SearchBookResults from "./SearchBookResults";
+import SearchBookResults from './SearchBookResults';
 import * as BooksAPI from './BooksAPI';
 
 class SearchUnit extends Component {

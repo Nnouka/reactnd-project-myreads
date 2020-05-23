@@ -19,14 +19,16 @@ class Book extends Component {
         }
         const getAppropriateStyle = () => {
             const imgeUrl = getThumbnail();
-            return {width: 128, height: 193, backgroundImage: `url(${imgeUrl})`}
+            return {width: 128, height: 193, backgroundImage: `url(${imgeUrl})`, textAlign: 'center', fontWeight: 'bold'}
         }
         const style = getAppropriateStyle();
 
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={style} alt='book cover'></div>
+                    <div className="book-cover" style={style}>
+                        {getThumbnail() === '' ? `${book.title || 'Book Cover'}` : ''}
+                    </div>
                     <ShelfChanger onShelfChanged={this.handleShelfChanged} currentShelf={book.shelf}/>
                 </div>
                 <div className="book-title">{book.title}</div>

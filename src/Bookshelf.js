@@ -6,7 +6,7 @@ class Bookshelf extends Component {
         const {shelfName, books, onShelfChanged} = this.props;
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title" style={{textTransform: 'capitalize'}}>
+                <h2 className="bookshelf-title badge" data-badge={books.length} style={{textTransform: 'capitalize'}}>
                     {Str.camelCaseToWords(shelfName)}
                  </h2>
                 <div className="bookshelf-books">

@@ -3,11 +3,7 @@ import React, {Component} from 'react';
 class ShelfChanger extends Component {
     handleShelfChange = (e) => {
         e.preventDefault();
-        // console.log("selected", e.target.value)
-        const val = e.target.value;
-        if(val !== 'none') {
-            this.props.onShelfChanged(e.target.value);
-        }
+        this.props.onShelfChanged(e.target.value);
     }
     render() {
         const shelfNames = [

@@ -3,7 +3,8 @@ import * as BooksAPI from './BooksAPI'
 import './App.css';
 import ShelvingUnit from './ShelvingUnit';
 import SearchUnit from './SearchUnit';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import ErrorPage404 from './ErrorPage404';
 
 class BooksApp extends React.Component {
   state = {
@@ -65,16 +66,19 @@ class BooksApp extends React.Component {
     const {shelves, shelfIndexes} = this.state;
     return (
       <div className="app">
-        <Route exact path='/' render={() => (
-          <ShelvingUnit onShelfChanged={this.handleShelfChanged} shelves={shelves} />
-        )} />
-        <Route exact path='/search' render={({history}) => (
-          <SearchUnit onShelfChanged={(book, toShelf) => {
-            this.handleShelfChanged(book, toShelf);
-            history.push('/');
-          }} 
-            shelfIndexes={shelfIndexes} />
-        )} />
+        <Switch>
+            <Route exact path='/' render={() => (
+              <ShelvingUnit onShelfChanged={this.handleShelfChanged} shelves={shelves} />
+            )} />
+            <Route exact path='/search' render={({history}) => (
+              <SearchUnit onShelfChanged={(book, toShelf) => {
+                this.handleShelfChanged(book, toShelf);
+                history.push('/');
+              }} 
+                shelfIndexes={shelfIndexes} />
+            )} />
+            <Route component={ErrorPage404} />
+        </Switch>
       </div>
     )
   }
